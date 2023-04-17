@@ -1,17 +1,6 @@
-# HFL-client
-for work in progress
+# HFL-NodeJS
 
-# Client Set Up
-1. install node
-2. install npm
-3. clone this repo
-4. install dependencies with: 
-```
-npm i
-```
-5. start development with:
-```
-npm start
-```
-
-https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html#2
+# Usage Instructions
+0. Ensure you are running NodeJS 18.X.X or above!
+1. Run `npm i`
+2. Run `npm start`
