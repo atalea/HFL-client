@@ -81,6 +81,16 @@
             extraHeaders: TFRequest.requestInit.headers
         });
 
+        const appState = useRef(AppState.currentState);
+        useEffect(() => {
+            const appStateListen = AppState.addEventListener('change', nextAppState => {
+                if(nextAppState != 'active') {
+                    socket.disconnect();
+                    console.log("client disconnected - app left")
+                }
+            })
+        })
+
         socket.on("download", async (message) =>{
             iteration += 1;
             curepoch = 0;
