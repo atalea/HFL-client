@@ -103,6 +103,7 @@
             if (!images || !labels) await dataprep(message.data.start, message.data.size);
 
             console.log("Begin client training!");
+            const startTime = performance.now();
             await model.compile({
                 optimizer: "adam",
                 loss: "categoricalCrossentropy",
@@ -118,6 +119,10 @@
                     }
                 }
             });
+            const endTime = performance.now();
+
+            const trainTime = endTime - startTime;
+            console.log(trainTime);
             console.log("End client training!");
             
             let weights = [];
