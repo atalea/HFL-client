@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { AppState, StyleSheet, SafeAreaView, Keyboard, View} from 'react-native';
 import { WebView } from 'react-native-webview';
