@@ -1,4 +1,3 @@
-<!-- Copyright (c) 2023 David Canaday -->
 <!DOCTYPE html>
 <head>
     <title>HFL Client</title>
@@ -116,6 +115,7 @@
             const trainEpochs = message.iterations;
             if (!images || !labels) await dataprep(message.data.start, message.data.size);
 
+            const trainStart = performance.now();
             console.log("Begin client training!");
             const start = performance.now()
 
@@ -141,6 +141,9 @@
             console.log("End client training!");
 
             //let compTime = calculate_computation_time(iteration, message.data.size, times)
+
+            console.log(`End client training! Training took ${trainTime} seconds.`);
+
             
             let weights = [];
             let shape = [];

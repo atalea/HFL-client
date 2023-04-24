@@ -6,7 +6,7 @@ const AddrForm = ({ setAddr: setAddr, submit: submit }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Enter Address of Edge Server:</Text>
-            <TextInput style={styles.input} onChangeText={setAddr} placeholder='127.0.0.1' keyboardType='numeric'/>
+            <TextInput style={styles.input} onChangeText={setAddr} placeholder='127.0.0.1:3001' keyboardType='numeric'/>
             <TouchableOpacity style={styles.button} onPress={submit}>
                 <Text style={styles.btext}>Submit!</Text>
             </TouchableOpacity>
