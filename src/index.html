@@ -81,15 +81,29 @@
             extraHeaders: TFRequest.requestInit.headers
         });
 
-        const appState = useRef(AppState.currentState);
-        useEffect(() => {
-            const appStateListen = AppState.addEventListener('change', nextAppState => {
-                if(nextAppState != 'active') {
-                    socket.disconnect();
-                    console.log("client disconnected - app left")
-                }
-            })
-        })
+        // const appState = useRef(AppState.currentState);
+        // useEffect(() => {
+        //     const appStateListen = AppState.addEventListener('change', nextAppState => {
+        //         if(nextAppState != 'active') {
+        //             socket.disconnect();
+        //             console.log("client disconnected - app left")
+        //         }
+        //     })
+        // })
+
+        // function calculate_computation_time(local_iteration, data_set_size, time) {
+        //     var cpuStat = require('cpu-stat');
+        //     var cpuFrequency = cpuStat.avgClockMHz();
+        //     var cpuCycle = cpuFrequency * time
+            
+        //     var compTime = local_iteration((cpuCycle * data_set_size) / cpuFrequency)
+
+        //     return compTime;
+        // }
+
+        // function calculate_energy_consumption() {
+            
+        // }
 
         socket.on("download", async (message) =>{
             iteration += 1;
@@ -103,7 +117,8 @@
             if (!images || !labels) await dataprep(message.data.start, message.data.size);
 
             console.log("Begin client training!");
-            const startTime = performance.now();
+            const start = performance.now()
+
             await model.compile({
                 optimizer: "adam",
                 loss: "categoricalCrossentropy",
@@ -119,11 +134,13 @@
                     }
                 }
             });
-            const endTime = performance.now();
 
-            const trainTime = endTime - startTime;
-            console.log(trainTime);
+            const end = performance.now()
+
+            const time = end - start
             console.log("End client training!");
+
+            //let compTime = calculate_computation_time(iteration, message.data.size, times)
             
             let weights = [];
             let shape = [];
@@ -143,6 +160,7 @@
             form.append("weights", weightBlob);
             form.append("shape", new Blob([new Uint8Array(shapeT.buffer)]));
             form.append("sid", socket.id);
+            form.append("computation time", compTime);
             let xhr = new XMLHttpRequest();
             xhr.open("POST", message.callback, true);
             xhr.setRequestHeader("Authorization", `Bearer ${token}`);
