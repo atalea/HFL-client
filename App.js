@@ -3,20 +3,12 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Keyboard, View, SafeAreaView } from 'react-native';
 import { WebView } from 'react-native-webview';
 import AddrForm from './components/AddrForm.js';
-<<<<<<< HEAD
-import htm from './src/index.html';
-=======
->>>>>>> c79e4a9514065e199c42423450d6801c02eff4d9
 
 import htm from './src/index.html';
 export default function App() {
   const [content, setContent] = useState("");
   const [addr, setAddr] = useState("");
   const [submitted, setSubmitted] = useState(false);
-<<<<<<< HEAD
-
-=======
->>>>>>> c79e4a9514065e199c42423450d6801c02eff4d9
   const submit = async () => {
     if (submitted) return;
     setSubmitted(true);
